@@ -8,17 +8,32 @@ router.get("/add", function (req, res, next) {
 });
 
 router.post("/add", function (req, res, next) {
-  const music = new Music();
-  music.name = req.body.name;
-  music.singer = req.body.singer;
-  music.comment = req.body.comment;
+  
+  req.checkBody("name", "Iltimos musiqa nomini yozing").notEmpty();
+  req.checkBody("singer", "Iltimos musiqa avtorini yozing").notEmpty();
+  req.checkBody("comment", "Iltimos musiqaga izoh yozing").notEmpty();
 
-  music.save((err)=> {
-    if(err) console.log(err);
-    else{
-      res.redirect('/')
-    }
-  })
+  const errors = req.validationErrors();
+
+  if (errors) {
+    res.render("musicAdd", {
+      title: "Musiqa qoshishda validator ishliyapti",
+      errors: errors,
+    });
+  } else {
+    const music = new Music();
+    music.name = req.body.name;
+    music.singer = req.body.singer;
+    music.comment = req.body.comment;
+
+    music.save((err) => {
+      if (err) console.log(err);
+      else {
+        req.flash("success", "Musiqa qoshildi");
+        res.redirect("/");
+      }
+    });
+  }
 });
 
 module.exports = router;

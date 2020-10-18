@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    h1.mb-5= title
+    form(method="POST" action="/registr")
+        .form-group
+            label(for='name') Ismingizni yozing
+            input#name.form-control(type='text' name="name")
+        .form-group
+            label(for='username') Username mingizni yozing
+            input#username.form-control(type='text' name="username")
+        .form-group
+            label(for='email') Emailingizni yozing
+            input#email.form-control(type='text' name="email")
+        .form-group
+            label(for='password') Parolingizni yozing
+            input#password.form-control(type='password' name="password")
+        .form-group
+            label(for='password2') Parolingizni tasdiqlang
+            input#password2.form-control(type='password' name="password2")
+        button.btn.btn-success(type='submit') Ro'yxatdan o'tish
