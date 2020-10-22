@@ -2,6 +2,7 @@ const express = require("express");
 const User = require("../model/User");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 
 router.get("/registr", function (req, res, next) {
   res.render("registr", { title: "Ro'yxatdan o'tish sahifasi" });
@@ -54,6 +55,20 @@ router.post("/registr", function (req, res, next) {
 
 router.get("/login", function (req, res, next) {
   res.render("login", { title: "Saytga kirish" });
+});
+
+router.post("/login", function (req, res, next) {
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true,
+  })(req, res, next);
+});
+
+router.get("/logout", function (req, res, next) {
+  req.logout();
+  req.flash("success", "Tizimdan chiqdingiz");
+  res.redirect("/login");
 });
 
 module.exports = router;

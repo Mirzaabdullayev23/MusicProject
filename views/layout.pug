@@ -17,6 +17,12 @@ html
           a.nav-link(href='/') Bosh sahifa
         li.nav-item
           a.nav-link(href='/music/add') Musiqa qo'shish
+
+    ul.navbar-nav.mr-right
+      if user 
+        li.nav-item
+          a.nav-link(href='/logout') Chiqish
+      else
         li.nav-item
           a.nav-link(href='/registr') Ro'yxatdan o'tish
         li.nav-item
