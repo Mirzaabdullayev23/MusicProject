@@ -15,8 +15,9 @@ html
       ul.navbar-nav.mr-auto
         li.nav-item
           a.nav-link(href='/') Bosh sahifa
-        li.nav-item
-          a.nav-link(href='/music/add') Musiqa qo'shish
+        if user
+          li.nav-item
+            a.nav-link(href='/music/add') Musiqa qo'shish
 
     ul.navbar-nav.mr-right
       if user 

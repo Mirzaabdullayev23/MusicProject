@@ -1,9 +1,10 @@
 const express = require("express");
 const Music = require("../model/Music");
 const router = express.Router();
+const eA = require("../middleware/eA");
 
 /* GET users listing. */
-router.get("/edit/:id", function (req, res, next) {
+router.get("/edit/:id", eA, function (req, res, next) {
   Music.findById(req.params.id, (err, musics) => {
     res.render("musicEdit", {
       title: "Musiqa o'zgartirish sahifasi",

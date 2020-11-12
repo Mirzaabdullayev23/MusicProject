@@ -91,6 +91,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
+
 app.use("/music", addRouter);
 app.use("/music", musicRouter);
 app.use("/music", editRouter);
